@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<!-- Fiche Client -->
+    	<record id="is_partner_view_form" model="ir.ui.view">
+            <field name="name">is.partner.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="is_code" placeholder="Code" attrs="{'required': [('is_company', '=', True)], 'invisible': [('is_company', '=', False)]}" />
+                    <field name="is_adr_code" placeholder="Code Adresse" attrs="{'required': [('is_company', '=', True)], 'invisible': [('is_company', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="before">
+                    <field name="is_adr_livraison" domain="[('is_company', '=', True),('customer','=', customer),('supplier','=',supplier)]" />
+                    <field name="is_adr_facturation" domain="[('is_company', '=', True),('customer','=', customer),('supplier','=',supplier)]" />
+                    <field name="is_adr_groupe" domain="[('is_company', '=', True),('customer','=', customer),('supplier','=',supplier)]" />
+                </xpath>
+            </field>
+        </record>
+    	
+    </data>
+</openerp>
