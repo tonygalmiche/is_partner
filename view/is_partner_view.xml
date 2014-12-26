@@ -8,9 +8,13 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='name']" position="after">
-                    <field name="is_code" placeholder="Code" attrs="{'required': [('is_company', '=', True)], 'invisible': [('is_company', '=', False)]}" />
-                    <field name="is_adr_code" placeholder="Code Adresse" attrs="{'required': [('is_company', '=', True)], 'invisible': [('is_company', '=', False)]}"/>
+            	<xpath expr="//field[@name='name']" position="attributes">
+            		<attribute name="invisible">1</attribute> 
+            	</xpath>
+                <xpath expr="//field[@name='parent_id']" position="before">
+                	<field name="name" default_focus="1" placeholder="Name"/>
+               		<field name="is_code" placeholder="Code" attrs="{'required': [('is_company', '=', True)], 'invisible': [('is_company', '=', False)]}" />
+                    <field name="is_adr_code" placeholder="Code Adresse" attrs="{'required': [('is_company', '=', True)], 'invisible': [('is_company', '=', False)]}"/>	
                 </xpath>
                 <xpath expr="//field[@name='website']" position="before">
                     <field name="is_adr_livraison" domain="[('is_company', '=', True),('customer','=', customer),('supplier','=',supplier)]" />
